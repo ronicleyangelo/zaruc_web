@@ -1,0 +1,14 @@
+.container {
+  max-width: 400px;
+  margin: 50px auto;
+}
+
+.img-container {
+  text-align: center;
+  margin: 20px 0;
+}
+
+.zaruce-image {
+  width: 200px;
+  height: auto;
+}
