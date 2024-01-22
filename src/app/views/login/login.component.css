@@ -12,3 +12,14 @@
   width: 200px;
   height: auto;
 }
+
+button {
+  display: table-cell;
+  max-width: 600px;
+}
+img {
+  background-image: url("/assets/images/transferir.jpg");
+  background-repeat: no-repeat;
+  background-position: right top;
+
+}

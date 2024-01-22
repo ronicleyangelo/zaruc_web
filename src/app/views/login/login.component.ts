@@ -1,14 +1,23 @@
-import {ReactiveFormsModule, UntypedFormBuilder, UntypedFormControl, UntypedFormGroup} from "@angular/forms";
-import { Validators} from '@angular/forms';
-import { Component } from "@angular/core";
-import {HttpClient, HttpClientModule} from "@angular/common/http";
-import {Observable} from "rxjs";
+import { ReactiveFormsModule, UntypedFormBuilder, UntypedFormControl, UntypedFormGroup } from "@angular/forms";
+import { Validators } from '@angular/forms';
+import { Component, OnInit } from "@angular/core";
+import { HttpClient, HttpClientModule } from "@angular/common/http";
+import { Observable } from "rxjs";
+import {MatButtonModule} from "@angular/material/button";
+import {CommonModule} from "@angular/common";
+import {JavaServiceModule} from "../service/javaService.module";
+import {BackendCommunicationService} from "../service/javaService";
+import {MatInputModule} from "@angular/material/input";
 
 @Component({
   imports: [
+    CommonModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    MatButtonModule,
+    MatInputModule,
   ],
+  providers: [BackendCommunicationService, HttpClient],
   selector: 'app-login',
   standalone: true,
   styleUrls: [`./login.component.css`],
@@ -16,13 +25,12 @@ import {Observable} from "rxjs";
 })
 export class LoginComponent {
   loginForm: UntypedFormGroup;
-  private baseUrl = 'localhost:8080';
-  loginModel: any = { username: '', senha: ''}
+  imgURL = './assets/images/transferir.jpg'
 
-  constructor(private http: HttpClient, private fb: UntypedFormBuilder) {
+  constructor(private http: HttpClient, private fb: UntypedFormBuilder, private java: BackendCommunicationService) {
     this.loginForm = this.fb.group({
-      login: new UntypedFormControl("", [Validators.required]),
-      senha: new UntypedFormControl("", [Validators.required])
+      login: new UntypedFormControl("", ),
+      senha: new UntypedFormControl("", )
     })
   }
   // @ts-ignore
@@ -40,7 +48,8 @@ export class LoginComponent {
   // }
   login() : Observable<any> {
     const { login, senha } = this.loginForm.value;
-    console.log({ login, senha })
-    return this.http.post(`${this.baseUrl}/auth/login`, { login, senha });
+    console.log("LOGIN", { login, senha })
+    return this.java.login({ login, senha });
   }
+
 }

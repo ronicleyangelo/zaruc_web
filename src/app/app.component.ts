@@ -8,12 +8,12 @@ import { LoginComponent } from "./views/login/login.component";
   template: '<router-outlet></router-outlet>',
   styleUrls: ['./app.component.css'],
   standalone: true,
-  imports: [CommonModule, RouterOutlet, LoginComponent],
+  imports: [
+    RouterOutlet
+  ],
 })
-export class AppComponent implements OnInit {
-  ngOnInit(): void {
-      throw new Error('Method not implemented.');
-  }
+export class AppComponent {
+
   opened = false;
   // constructor(private router: Router, private route: ActivatedRoute) {
   //   const req = JSON.stringify(window.location);

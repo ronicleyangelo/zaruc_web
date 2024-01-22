@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
 })
 
 export class BackendCommunicationService {
-    private baseUrl = 'http://localhost:8080'; // Atualize com a URL do seu backend
+    private baseUrl = 'http://localhost:8081'; // Atualize com a URL do seu backend
 
     constructor(private http: HttpClient) { }
 
